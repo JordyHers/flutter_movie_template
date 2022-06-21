@@ -10,7 +10,9 @@ Map<String, String> get headers => {
   "Accept": "application/json",
   "Authorization": ApiPath.authorization,
 };
-///This function returns The list of Albums from The Api
+
+
+///This function returns The list of Movies from The Api
 @override
 Future <List<Movie>> getMovies() async {
   var data = await http.get(Uri.parse(ApiPath.endpoint),headers: headers);
