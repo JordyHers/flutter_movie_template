@@ -39,9 +39,6 @@ class _FavoritePageState extends State<FavoritePage> {
     super.dispose();
   }
 
-  Future refreshFavMovies() async {
-    await database.readFavoriteMovies();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +49,7 @@ class _FavoritePageState extends State<FavoritePage> {
     SizeConfig().init(context);
     return Scaffold(
       body:  CustomScrollView(
+        physics: BouncingScrollPhysics(),
               slivers: [
                 SliverAppBar(
                   elevation: 0,
@@ -60,7 +58,7 @@ class _FavoritePageState extends State<FavoritePage> {
                       .of(context)
                       .appBarTheme
                       .backgroundColor,
-                  expandedHeight: SizeConfig.screenHeight! * 0.15,
+                  expandedHeight: SizeConfig.screenHeight! * 0.10,
                   floating: true,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
@@ -76,7 +74,6 @@ class _FavoritePageState extends State<FavoritePage> {
                   delegate: SliverChildBuilderDelegate(
                       childCount: favoriteMovieList.length,
                           (BuildContext context, int index) {
-
                         return MovieCard(movie: favoriteMovieList[index]);
                       }
                   ),

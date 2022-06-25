@@ -4,7 +4,6 @@ import 'package:movieapp/src/core/utils/size_config.dart';
 import 'package:movieapp/src/ui/theme/theme.dart';
 import 'package:movieapp/src/ui/widgets/cupertino_custom_button.dart';
 
-
 class MovieDetailPage extends StatelessWidget {
   final BuildContext? context;
   final  Movie movie;
@@ -113,7 +112,10 @@ Widget _buildDetailPageForMovie(BuildContext context, Movie movie) {
               child: Padding(
                 padding:  EdgeInsets.symmetric(horizontal: SizeConfig.mediumPadding),
                 child: Text(
-                  movie.overview!,textAlign: TextAlign.start, maxLines: 15, style: Theme.of(context).textTheme.caption?.copyWith(fontSize: SizeConfig.screenHeight! * 0.018,fontWeight: FontWeight.w500,height: 1.5,color: Colors.black.withOpacity(0.6)),
+                  movie.overview!,textAlign: TextAlign.start, maxLines: 17, style:
+                Theme.of(context).textTheme.caption?.copyWith(
+                    fontSize: SizeConfig.screenHeight! * 0.018,
+                    fontWeight: FontWeight.w500,height: 1.5,color: Colors.black.withOpacity(0.6)),
                 ),
               )
           ),
@@ -129,6 +131,7 @@ Widget _buildDetailPageForMovie(BuildContext context, Movie movie) {
 
 }
 
+//06:
 
 String parseDate(String date){
   DateTime dates =  DateTime.parse(date);

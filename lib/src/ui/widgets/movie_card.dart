@@ -13,7 +13,7 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SizedBox(
-      height: SizeConfig.screenHeight! * 0.15,
+      height: SizeConfig.screenHeight! * 0.12,
       child: Padding(
         padding:  EdgeInsets.symmetric(vertical: SizeConfig.smallPadding),
         child: GestureDetector(
@@ -36,7 +36,7 @@ class MovieCard extends StatelessWidget {
                       horizontal: SizeConfig.smallPadding, vertical:
                   SizeConfig.screenHeight! * 0.005),
 
-                  width: SizeConfig.screenWidth! * 0.25,
+                  width: SizeConfig.screenWidth! * 0.19,
                   decoration: BoxDecoration(
                     color: textColor,
                     borderRadius: BorderRadius.circular(10),
@@ -52,26 +52,28 @@ class MovieCard extends StatelessWidget {
                   padding:  EdgeInsets.symmetric(
                       vertical: SizeConfig.screenHeight! * 0.005),
                   child: Column(
-
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(_parseListOfGenresIntoString(movie.genres), style: Theme
                           .of(context)
                           .textTheme
                           .caption,),
-                      SizedBox(height: SizeConfig.screenHeight! * 0.010),
                       SizedBox(
                           height: SizeConfig.screenHeight! * 0.05,
                           width: SizeConfig.screenWidth! * 0.45,
-                          child: Text(movie.title!, style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyText2, maxLines: 2,)),
+                          child: Text(movie.title!, style: Theme.of(context).
+                          textTheme.bodyText1?.copyWith(fontSize:SizeConfig.screenHeight! * 0.018,
+                              fontWeight: FontWeight.w700 ))),
+                      SizedBox(height: SizeConfig.screenHeight! * 0.002),
+                      Container(
+                        margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.02),
+                        height: 0.5,color: inactiveColor,width:SizeConfig.screenWidth! * 0.65 ,)
                     ],
                   ),
                 ),
                 const Spacer(flex: 3),
-                const Icon(Icons.arrow_forward_ios,),
+                Icon(Icons.arrow_forward_ios,color: inactiveColor),
                 const Spacer(flex: 1),
               ]),
         ),

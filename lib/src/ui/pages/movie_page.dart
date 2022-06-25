@@ -4,6 +4,7 @@ import 'package:movieapp/src/core/constants/strings.dart';
 import 'package:movieapp/src/core/database/movie_database.dart';
 
 import 'package:movieapp/src/core/utils/size_config.dart';
+import 'package:movieapp/src/ui/theme/theme.dart';
 import 'package:movieapp/src/ui/widgets/movie_card.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,10 @@ class MoviePage extends StatefulWidget {
   /// The [context]  here is the context of the JobsPage
   ///
   /// as the result we can get the provider of Database
-  static create(BuildContext context  )  {
+  static create(BuildContext context)  {
     final database = Provider.of<MovieDatabase>(context,listen: false);
     return  ChangeNotifierProvider<MovieDatabase>(
-      create: (_) => MovieDatabase.instance,
+      create: (context) => MovieDatabase.instance,
       child: Consumer<MovieDatabase>(
         builder: (context, model, child) => MoviePage(database: database),
       ),
@@ -37,21 +38,23 @@ class _MoviePageState extends State<MoviePage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return  CupertinoPageScaffold(
               child: CustomScrollView(
+                physics: BouncingScrollPhysics(),
                 slivers: [
                   SliverAppBar(
+                    bottom: PreferredSize(preferredSize: Size(SizeConfig.screenWidth!,0.5),
+                    child: Container(color: inactiveColor,height: 1),),
                     elevation: 0,
                     backgroundColor: Theme
                         .of(context)
                         .appBarTheme
                         .backgroundColor,
-                    expandedHeight: SizeConfig.screenHeight! * 0.15,
-                    floating: true,
+                    expandedHeight: SizeConfig.screenHeight! * 0.10,
+                    floating: false,
                     pinned: true,
                     flexibleSpace: FlexibleSpaceBar(
                       centerTitle: false,
@@ -62,6 +65,7 @@ class _MoviePageState extends State<MoviePage> {
                           ?.color),),
                     ),
                   ),
+
                   SliverPadding(
                     padding:  EdgeInsets.only(bottom: SizeConfig.screenHeight! * 0.15),
                     sliver: SliverList(

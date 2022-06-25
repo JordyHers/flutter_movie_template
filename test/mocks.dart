@@ -8,12 +8,9 @@ import 'package:sqflite/sqflite.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 class MockSqfliteDatabase extends Mock implements Database {}
-
 class MockMovieDatabase extends Mock implements MovieDatabase {
-
   static final MockMovieDatabase instance = MockMovieDatabase._init();
   static MockSqfliteDatabase? _database;
-
   MockMovieDatabase._init();
 
 

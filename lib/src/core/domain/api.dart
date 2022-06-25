@@ -17,7 +17,7 @@ Map<String, String> get headers => {
 Future <List<Movie>> getMovies() async {
   var data = await http.get(Uri.parse(ApiPath.endpoint),headers: headers);
   var jsonData = json.decode(data.body);
-  List<Movie> movies =[];
+  List<Movie> movies = [];
   var movieData = jsonData['movies'];
   for (var mov in movieData){
     Movie movie = Movie.fromJson(mov);

@@ -8,9 +8,8 @@ class TabItemData{
   final IconData icon;
 
   static const Map<TabItem , TabItemData> allTabs ={
-    TabItem.movie : TabItemData(title: 'Movies', icon: Icons.list),
-    TabItem.favorite : TabItemData(title: 'Favorites', icon: Icons.favorite),
-
+    TabItem.movie : TabItemData(title: 'Movies', icon: Icons.movie),
+    TabItem.favorite : TabItemData(title: 'Favorites', icon: Icons.favorite_rounded),
   };
 
 }

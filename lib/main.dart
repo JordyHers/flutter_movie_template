@@ -10,16 +10,15 @@ import 'package:provider/provider.dart';
   WidgetsFlutterBinding.ensureInitialized();
 
   /// After Making sure the app is correctly initialized the
-  /// future wait functions are triggered before
+  /// future functions are triggered before
   /// [runApp()] is called. The functions take care of:
   /// 1. Fetching Json file.
   /// 2. Creating database
   /// 3. Loading database with json converted
-  Future.wait([
-    MovieDatabase.instance.create(),
-    MovieDatabase.instance.readAllMovies(),
-    MovieDatabase.instance.readFavoriteMovies(),
-  ]).whenComplete(() => runApp(const MyApp()));
+    MovieDatabase.instance.create().whenComplete(() =>
+        MovieDatabase.instance.readAllMovies().whenComplete(() =>
+            MovieDatabase.instance.readFavoriteMovies())
+   ).whenComplete(() => runApp(const MyApp()));
 
 }
 
@@ -28,7 +27,6 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     /// The [ListenableProvider] has been chosen in the current example
     /// to provide both [create] and [dispose] functions
     /// Make Sure the Main root provider is either

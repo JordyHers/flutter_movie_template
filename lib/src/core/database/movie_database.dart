@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:movieapp/src/core/constants/strings.dart';
 import 'package:movieapp/src/core/models/movie_model.dart';
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../domain/api.dart';
@@ -25,9 +28,10 @@ class MovieDatabase extends ChangeNotifier{
   Future<Database> _initDB(String filePath) async {
     // I could use a different location to store the data in the database;
     // Refer to [path_provider] package
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, filePath);
-    return await openDatabase(path, version: 1, onCreate: _createDB,);
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String path = appDocDir.path;
+    final joinPath = join(path, filePath);
+    return await openDatabase(joinPath, version: 1, onCreate: _createDB,);
   }
 
   //This functions creates a local database Using SQFlite packages.
@@ -69,11 +73,12 @@ class MovieDatabase extends ChangeNotifier{
     List<Movie> movies = [];
     await getMovies().then((value) => movies = value);
     final db = await instance.database;
-
     for (var movie in movies){
       await db.insert(movieTable, movie.toJson());
     }
+    print('movies : $movies');
     notifyListeners();
+
   }
 
 // Reads all the movies
@@ -82,6 +87,7 @@ class MovieDatabase extends ChangeNotifier{
     const orderBy = '${MovieFields.title} ASC';
     final result = await db.query(movieTable, orderBy: orderBy);
     movieList = result.map((json) => Movie.fromJson(json)).toList();
+    print(movieList);
     notifyListeners();
     return movieList;
 
@@ -113,7 +119,6 @@ class MovieDatabase extends ChangeNotifier{
     ).whenComplete(() => notifyListeners());
 
   }
-
 
   /// The database needs to be disposed
   /// Future close is then called.

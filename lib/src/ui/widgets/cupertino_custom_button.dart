@@ -10,52 +10,75 @@ import '../../core/models/movie_model.dart';
 
 enum ButtonState{ Add, Remove}
 
-class CustomButton extends StatelessWidget {
+class CustomButton extends StatefulWidget {
   final Movie movie;
    final ButtonState state;
   const CustomButton({Key? key,required this.state,required this.movie}) : super(key: key);
 
+  @override
+  State<CustomButton> createState() => _CustomButtonState();
+}
 
+class _CustomButtonState extends State<CustomButton> {
+
+  Color backgroundColor = Colors.transparent;
+  Color textColoredRemove = Colors.red;
+  Color textColoredAdd = backgroundButtonColorAdd;
+
+  late  String AddText = UiText.buttonFavAdd;
+  late String RemoveText = UiText.buttonFavRemove;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-     switch(state) {
+     switch(widget.state) {
        case ButtonState.Add:
          return Center(
            child: OutlinedButton(
                style: OutlinedButton.styleFrom(
-                 side:  BorderSide(width: 1.5, color: inactiveColor),
+                 backgroundColor: backgroundColor,
+                 side:  BorderSide(width: 1.5, color: backgroundButtonColorAdd),
                  minimumSize: Size(MediaQuery
                      .of(context)
                      .size
                      .width * 0.80, SizeConfig.screenHeight! * 0.06),
                ),
                onPressed: () {
+                 setState(() {
+                   backgroundColor = backgroundButtonColorAdd;
+                   AddText = UiText.buttonFavAddedToFavorite;
+                 textColoredAdd = Colors.white;});
                   MovieDatabase.instance.update(
-                     movie.copy(isFavorite: 0));
+                     widget.movie.copy(isFavorite: 0));
                     MovieDatabase.instance.readAllMovies();
                    MovieDatabase.instance.readFavoriteMovies();
-                 Navigator.of(context).pop();
+                       //.whenComplete(() => Navigator.pop(context));
+
                  print('Add to favorite ');
                },
-               child:  Text(UiText.buttonFavAdd,
-                 style: TextStyle(color: inactiveColor, fontSize: 16),)),
+               child:  Text(AddText,
+                 style: TextStyle(color: textColoredAdd, fontSize: 16),)),
          );
          break;
        case ButtonState.Remove:
          return  Center(
            child: OutlinedButton(
                style: OutlinedButton.styleFrom(
-                 side: const BorderSide(width: 1.5, color: Colors.red),
+                 backgroundColor: backgroundColor,
+                 side:  BorderSide(width: 1.5, color: backgroundButtonColorRemove),
                  minimumSize: Size(MediaQuery.of(context).size.width * 0.80, SizeConfig.screenHeight! * 0.06),
                ),
                onPressed: ()  {
-                 MovieDatabase.instance.update(movie.copy(isFavorite: 1));
+                 setState(() {
+                   backgroundColor = backgroundButtonColorRemove;
+                   RemoveText = UiText.buttonFromFavRemove;
+                 textColoredRemove = Colors.white;});
+                 MovieDatabase.instance.update(widget.movie.copy(isFavorite: 1));
                   MovieDatabase.instance.readAllMovies();
                   MovieDatabase.instance.readFavoriteMovies();
-                 Navigator.of(context).pop();
+                     // .whenComplete(() => Navigator.pop(context));
+
                  print('Remove from Favorite ');
-               }, child: const Text(UiText.buttonFavRemove,style: TextStyle(color: Colors.red,fontSize: 16),)),
+               }, child:  Text(RemoveText,style: TextStyle(color: textColoredRemove,fontSize: 16),)),
          );
      }
 

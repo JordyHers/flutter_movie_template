@@ -22,7 +22,9 @@ class ApiPath {
 //
 class UiText {
   static const String buttonFavAdd = 'Add to favorites';
+  static const String buttonFavAddedToFavorite = 'Added to favorites';
   static const String buttonFavRemove = 'Remove from favorites';
+  static const String buttonFromFavRemove = 'From favorites removed';
   static const String appTitle = 'Movies';
   static const String favoriteTitle = 'My Favorites';
 }
