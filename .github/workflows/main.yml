@@ -25,4 +25,4 @@ jobs:
         architecture: x64
     - run: flutter pub get
     - run: flutter test test/custom_cupertino_button_test.dart
-    - run: flutter build ios --release --no-codesign
+    - run: flutter build ios 
