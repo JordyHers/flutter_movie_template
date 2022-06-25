@@ -2,7 +2,10 @@
 
 the following app is a small mobile application completed in 4 hours by @Jordyhers
 
-<img width="515" alt="main" src="https://user-images.githubusercontent.com/49708438/174753832-ffdeb48a-e7db-4aef-a67f-7588905683a3.gif"> 
+
+https://user-images.githubusercontent.com/49708438/175782743-2467b213-257d-4c7d-8879-2a8887394f77.mov
+
+
 
 ## Folder structure
 
@@ -52,6 +55,7 @@ the following app is a small mobile application completed in 4 hours by @Jordyhe
 - [google_fonts](https://pub.dev/packages/google_font) to import custom font
 - [mockito](https://pub.dev/packages/mockito) for caching images
 - [shared_preferences](https://pub.dev/packages/shared_preferences) for String and bool caching
+- [path_provider](https://pub.dev/packages/path_provider) to access app's documents path
 
 
 
