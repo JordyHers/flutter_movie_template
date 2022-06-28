@@ -1,7 +1,7 @@
 # Challenge
 
-the following app is a small mobile application completed in 4 hours by @Jordyhers
-
+### the following app is a small mobile application completed in 4 hours by @Jordyhers
+### This app uses local storage database to locally store and retrieve data.
 
 https://user-images.githubusercontent.com/49708438/175782743-2467b213-257d-4c7d-8879-2a8887394f77.mov
 
