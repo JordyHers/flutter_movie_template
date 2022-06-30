@@ -53,7 +53,7 @@ https://user-images.githubusercontent.com/49708438/175782743-2467b213-257d-4c7d-
 - [freezed](https://pub.dev/packages/freezed) auto generated code
 - [sqflite](https://pub.dev/packages/sqflite) to locally store data
 - [google_fonts](https://pub.dev/packages/google_font) to import custom font
-- [mockito](https://pub.dev/packages/mockito) for caching images
+- [mockito](https://pub.dev/packages/mockito) for mock tests
 - [shared_preferences](https://pub.dev/packages/shared_preferences) for String and bool caching
 - [path_provider](https://pub.dev/packages/path_provider) to access app's documents path
 
