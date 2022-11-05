@@ -6,6 +6,8 @@ import 'package:movieapp/src/ui/pages/home_page.dart';
 import 'package:movieapp/src/ui/theme/theme.dart';
 import 'package:provider/provider.dart';
 
+
+// the project starts here.
  main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -27,6 +29,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     /// The [ListenableProvider] has been chosen in the current example
     /// to provide both [create] and [dispose] functions
     /// Make Sure the Main root provider is either
